@@ -1,21 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teachfinder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page" id="page">
 
-   <head itemscope itemtype="http://schema.org/WebSite">
+  <header class="header">
+    <div class="header__top">
+      <a href="#" class="logo">Teachfinder</a>
+      <form class="search">
+        <input type="text" placeholder="Name, note or age to search">
+        <button type="button">Search</button>
+      </form>
+    </div>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li><a href="#teachers">Teachers</a></li>
+        <li><a href="#statistics">Statistics</a></li>
+        <li><a href="#favorites">Favorites</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <button class="add-btn open-add">Add teacher</button>
+    </nav>
+  </header>
 
-      <meta charset="utf-8">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <meta name="msapplication-tap-highlight" content="no">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+  <main>
+    <section class="section" id="teachers">
+      <h2>Top Teachers</h2>
 
-      <title>Project</title>
+      <form class="filters">
+        <div class="filters__item">
+          <label>Age</label>
+          <select><option>18-31</option><option>32-45</option></select>
+        </div>
+        <div class="filters__item">
+          <label>Region</label>
+          <select><option>Europe</option><option>Asia</option></select>
+        </div>
+        <div class="filters__item">
+          <label>Sex</label>
+          <select><option>Male</option><option>Female</option></select>
+        </div>
+        <div class="filters__item"><label><input type="checkbox"> Only with photo</label></div>
+        <div class="filters__item"><label><input type="checkbox"> Only favorites</label></div>
+      </form>
 
-      <link rel="stylesheet" href="./css/app.css">
+      <ul class="teachers">
+        <li class="teacher" data-name="Ihor Tkachuk" data-subject="Chemistry" data-place="Kyiv, Ukraine" data-age="35, Male" data-email="ihor_tkachuk@domain.com" data-phone="+380964993252">
+          <img src="img/ihor.jpg" alt="Ihor Tkachuk">
+          <h3>Ihor Tkachuk</h3><p class="subject">Chemistry</p><p class="country">Ukraine</p>
+        </li>
+        <li class="teacher" data-name="Pragg Rameshbabu" data-subject="Chess" data-place="Chennai, India" data-age="19, Male" data-email="pragg@domain.com" data-phone="+919876543210">
+          <img src="img/pragg.jpg" alt="Pragg Rameshbabu">
+          <h3>Pragg Rameshbabu</h3><p class="subject">Chess</p><p class="country">India</p>
+        </li>
+        <li class="teacher star" data-name="Floor Jansen" data-subject="Vocal" data-place="Goirle, Denmark" data-age="29, Female" data-email="floor@domain.com" data-phone="+4512345678">
+          <img src="img/floor.jpg" alt="Floor Jansen">
+          <h3>Floor Jansen</h3><p class="subject">Vocal</p><p class="country">Denmark</p>
+        </li>
+        <li class="teacher" data-name="John Burke" data-subject="Computer Science" data-place="Brussels, Belgium" data-age="24, Male" data-email="john_burke@domain.com" data-phone="+3222345678">
+          <img src="img/john.jpg" alt="John Burke">
+          <h3>John Burke</h3><p class="subject">Computer Science</p><p class="country">Belgium</p>
+        </li>
+        <li class="teacher star" data-name="Ari Tang" data-subject="Biology" data-place="Beijing, China" data-age="27, Female" data-email="ari_tang@domain.com" data-phone="+861012345678">
+          <img src="img/ari.jpg" alt="Ari Tang">
+          <h3>Ari Tang</h3><p class="subject">Biology</p><p class="country">China</p>
+        </li>
+        <li class="teacher" data-name="Rachel Andrew" data-subject="Medicine" data-place="London, UK" data-age="33, Female" data-email="rachel@domain.com" data-phone="+442012345678">
+          <img src="img/rachel.jpg" alt="Rachel Andrew">
+          <h3>Rachel Andrew</h3><p class="subject">Medicine</p><p class="country">UK</p>
+        </li>
+        <li class="teacher" data-name="Anna Muzychuk" data-subject="Chess" data-place="Minsk, Belarus" data-age="30, Female" data-email="anna@domain.com" data-phone="+375171234567">
+          <div class="initials">A.M</div>
+          <h3>Anna Muzychuk</h3><p class="subject">Chess</p><p class="country">Belarus</p>
+        </li>
+        <li class="teacher" data-name="Radoslaw Ljuboevic" data-subject="Physics" data-place="Warsaw, Poland" data-age="41, Male" data-email="radoslaw@domain.com" data-phone="+48221234567">
+          <div class="initials">R.L</div>
+          <h3>Radoslaw Ljuboevic</h3><p class="subject">Physics</p><p class="country">Poland</p>
+        </li>
+      </ul>
+    </section>
 
-   </head>
+    <section class="section" id="statistics">
+      <h2>Statistics</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Name</th><th>Speciality ↓</th><th>Age</th><th>Gender</th><th>Nationality</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Daisy Alexander</td><td>Chemistry</td><td>28</td><td>Female</td><td>Vietnam</td></tr>
+          <tr><td>Julia Bradley</td><td>Math</td><td>26</td><td>Female</td><td>USA</td></tr>
+          <tr><td>Rita Hart</td><td>Art</td><td>41</td><td>Female</td><td>Ireland</td></tr>
+          <tr><td>Jonathan Jacobs</td><td>Math</td><td>32</td><td>Male</td><td>England</td></tr>
+          <tr><td>Nathaniel White</td><td>Computer Science</td><td>37</td><td>Male</td><td>Austria</td></tr>
+          <tr><td>Frank Medina</td><td>English</td><td>43</td><td>Male</td><td>Italy</td></tr>
+          <tr><td>Ella Curtis</td><td>Chess</td><td>34</td><td>Female</td><td>USA</td></tr>
+          <tr><td>Claire Simmmons</td><td>Art</td><td>38</td><td>Female</td><td>Netherlands</td></tr>
+          <tr><td>Benjamin Knight</td><td>Biology</td><td>44</td><td>Male</td><td>Scotland</td></tr>
+          <tr><td>Norma Rose</td><td>Statistics</td><td>36</td><td>Female</td><td>France</td></tr>
+        </tbody>
+      </table>
+      <div class="pages">
+        <span>1</span><a href="#">2</a><a href="#">3</a><span>...</span><a href="#">Last</a>
+      </div>
+    </section>
 
-   <body itemscope itemtype="http://schema.org/WebPage">
-      <script type="text/javascript" src="./js/app.js"></script>
-      
-  </body>
+    <section class="section" id="favorites">
+      <h2>Favorites</h2>
+      <div class="slider">
+        <button class="arrow">&#10094;</button>
+        <ul class="teachers teachers--small">
+          <li class="teacher"><img src="img/ihor.jpg" alt=""><h3>Ihor Tkachuk</h3><p class="country">Ukraine</p></li>
+          <li class="teacher"><div class="initials">A.M</div><h3>Anna Makarevich</h3><p class="country">Belarus</p></li>
+          <li class="teacher"><img src="img/john.jpg" alt=""><h3>John Burke</h3><p class="country">Belgium</p></li>
+          <li class="teacher"><img src="img/ari.jpg" alt=""><h3>Ari Tang</h3><p class="country">China</p></li>
+          <li class="teacher"><img src="img/floor.jpg" alt=""><h3>Floor Jansen</h3><p class="country">Denmark</p></li>
+        </ul>
+        <button class="arrow">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque facere, hic impedit itaque molestiae sit tempore? Ea in mollitia natus rerum voluptates. Ea ex excepturi facere tempora. Aliquid asperiores hic impedit iusto natus quaerat ratione sit? Culpa iusto optio voluptas voluptate. Enim eveniet fugit iure maiores molestiae, praesentium quia.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam eligendi illum in inventore ipsum odio officiis omnis quisquam sed tempora?</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque esse expedita id iusto mollitia, odit sint ullam veritatis vero?</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <ul class="nav__list">
+      <li><a href="#teachers">Teachers</a></li>
+      <li><a href="#statistics">Statistics</a></li>
+      <li><a href="#favorites">Favorites</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <button class="add-btn open-add">Add teacher</button>
+  </footer>
+</div>
+
+<div class="popup" id="popup-add">
+  <div class="popup__window">
+    <div class="popup__head"><span>Add Teacher</span><button class="close">&#10006;</button></div>
+    <form class="form">
+      <label class="full">Name
+        <input type="text" placeholder="Enter name">
+      </label>
+      <label class="full">Speciality
+        <select><option>Mathematics</option><option>Chemistry</option><option>Physics</option><option>Chess</option></select>
+      </label>
+      <label>Country
+        <select><option>Ukraine</option><option>Poland</option><option>India</option></select>
+      </label>
+      <label>City
+        <input type="text">
+      </label>
+      <label>Email
+        <input type="email">
+      </label>
+      <label>Phone
+        <input type="tel">
+      </label>
+      <label>Date of birth
+        <input type="date">
+      </label>
+      <div class="full radio">
+        <span>Sex</span>
+        <label>Male <input type="radio" name="sex"></label>
+        <label>Female <input type="radio" name="sex"></label>
+      </div>
+      <div class="full radio">
+        <span>Background color</span>
+        <input type="color" value="#cccccc">
+      </div>
+      <label class="full">Notes (optional)
+        <textarea rows="5"></textarea>
+      </label>
+      <button type="button" class="submit">Add</button>
+    </form>
+  </div>
+</div>
+
+<div class="popup" id="popup-info">
+  <div class="popup__window popup__window--info">
+    <div class="popup__head"><span>Teacher Info</span><button class="close">&#10006;</button></div>
+    <div class="info">
+      <div class="info__top">
+        <img id="info-photo" src="" alt="">
+        <span class="info__star">&#9734;</span>
+        <h2 id="info-name"></h2>
+        <h4 id="info-subject"></h4>
+        <p id="info-place"></p>
+        <p id="info-age"></p>
+        <p><a id="info-email" href="#"></a></p>
+        <p id="info-phone"></p>
+      </div>
+      <p class="info__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem consectetur culpa cumque, distinctio dolor dolore dolorem doloremque ea explicabo facilis nam nesciunt nisi pariatur perspiciatis porro quis similique temporibus veniam veritatis? A ab ad, aliquam amet consequatur cupiditate debitis deserunt doloribus dolorum earum eius eos minus nostrum odit omnis perferendis...</p>
+      <a href="#" class="map-link">toggle map</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
 </html>

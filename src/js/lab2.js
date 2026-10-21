@@ -1,5 +1,3 @@
-import { randomUserMock, additionalUsers } from "./FE4U-Lab2-mock.js";
-
 const courses = [
   "Mathematics", "Physics", "English", "Computer Science", "Dancing", "Chess",
   "Biology", "Chemistry", "Law", "Art", "Medicine", "Statistics",
@@ -8,7 +6,7 @@ const courses = [
 // "male" -> "Male"
 function capitalize(text) {
   if (typeof text !== "string" || text === "") {
-    return text;S
+    return text;
   }
   return text[0].toUpperCase() + text.slice(1);
 }
@@ -135,6 +133,25 @@ const phoneFormats = {
   "Netherlands": /^\(\d{3}\)-\d{3}-\d{4}$/,
 };
 
+// Приклади номерів для підказки у формі (підходять під формати вище)
+const phoneExamples = {
+  "Germany": "0079-8291509",
+  "Ireland": "021-123-4567",
+  "Australia": "08-1234-5678",
+  "United States": "(555)-123-4567",
+  "Finland": "02-123-456",
+  "Turkey": "(555)-123-4567",
+  "Switzerland": "079 123 45 67",
+  "New Zealand": "(555)-123-4567",
+  "Spain": "912-345-678",
+  "Norway": "12345678",
+  "Denmark": "12345678",
+  "Iran": "021-12345678",
+  "Canada": "613-123-4567",
+  "France": "01-23-45-67-89",
+  "Netherlands": "(010)-123-4567",
+};
+
 function isCapital(text) {
   return typeof text === "string" && text !== "" && text[0] === text[0].toUpperCase();
 }
@@ -165,12 +182,21 @@ function validateUser(user) {
 
 // № 3
 
+// Перевіряє вік: число (30) або діапазон ("18-31")
+function ageMatches(userAge, age) {
+  if (typeof age === "string") {
+    let parts = age.split("-");
+    return userAge >= Number(parts[0]) && userAge <= Number(parts[1]);
+  }
+  return userAge === age;
+}
+
 function filterUsers(users, country, age, gender, favorite) {
   let result = [];
   for (let i = 0; i < users.length; i++) {
     let user = users[i];
     if (country !== undefined && user.country !== country) continue;
-    if (age !== undefined && user.age !== age) continue;
+    if (age !== undefined && ageMatches(user.age, age) === false) continue;
     if (gender !== undefined && user.gender !== gender) continue;
     if (favorite !== undefined && user.favorite !== favorite) continue;
     result.push(user);
@@ -210,6 +236,25 @@ function findUser(users, field, value) {
   return null;
 }
 
+// № 5 (для сторінки)
+// findUser повертає одного, а на сторінці треба показати всіх, хто підходить
+function searchUsers(users, text) {
+  text = text.trim().toLowerCase();
+  if (text === "") {
+    return users;
+  }
+
+  let result = [];
+  for (let i = 0; i < users.length; i++) {
+    let name = String(users[i].full_name).toLowerCase();
+    let note = String(users[i].note).toLowerCase();
+    if (name.includes(text) || note.includes(text) || String(users[i].age) === text) {
+      result.push(users[i]);
+    }
+  }
+  return result;
+}
+
 // № 6
 
 function getPercent(users, field, sign, value) {
@@ -228,28 +273,3 @@ function getPercent(users, field, sign, value) {
 
   return (count / users.length) * 100;
 }
-
-
-
-
-
-const users = getFormattedUsers();
-console.log("1. Користувачів після об'єднання:", users.length);
-console.log(users[0]);
-
-const validUsers = [];
-for (let i = 0; i < users.length; i++) {
-  if (validateUser(users[i])) {
-    validUsers.push(users[i]);
-  }
-}
-console.log("2. Валідних:", validUsers.length);
-
-console.log("3. Germany + Male:", filterUsers(users, "Germany", undefined, "Male", undefined));
-
-const sorted = sortUsers(users, "age", "desc");
-console.log("4. Найстарший:", sorted[0].full_name, sorted[0].age);
-
-console.log("5. Пошук:", findUser(users, "full_name", "Norbert Weishaupt"));
-
-console.log("6. Відсоток старших за 30:", getPercent(users, "age", ">", 30) + "%");

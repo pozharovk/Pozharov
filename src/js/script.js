@@ -1,4 +1,8 @@
-let users = getFormattedUsers();
+const FIRST_COUNT = 50;
+const NEXT_COUNT = 10;
+
+let users = [];
+let loadedCount = 0;
 let currentUser = null;
 let sortField = "";
 let sortDirection = "asc";
@@ -14,6 +18,9 @@ const favoritesEmpty = document.getElementById("favorites-empty");
 
 const tableHead = document.querySelector(".table thead");
 const statsBody = document.getElementById("stats-body");
+const statsCount = document.getElementById("stats-count");
+const statusText = document.getElementById("status");
+const nextBtn = document.getElementById("next-btn");
 
 const popupAdd = document.getElementById("teach_add_popup");
 const popupInfo = document.getElementById("popup-info");
@@ -22,6 +29,48 @@ const formError = document.getElementById("form-error");
 
 const infoPhoto = document.getElementById("info-photo");
 const infoStar = document.querySelector(".info__star");
+
+async function loadUsers(count) {
+  nextBtn.disabled = true;
+  statusText.textContent = "Loading...";
+
+  try {
+    const page = loadedCount / count + 1;
+    const newUsers = await getUsersFromApi(count, page);
+
+    for (let i = 0; i < newUsers.length; i++) {
+      if (findUser(users, "id", newUsers[i].id) === null) {
+        users.push(newUsers[i]);
+      }
+    }
+    loadedCount = loadedCount + count;
+
+    statusText.textContent = "";
+    updateCountries();
+    updatePage();
+  } catch (error) {
+    statusText.textContent = "Could not load users. Check your internet connection";
+  }
+
+  nextBtn.disabled = false;
+}
+
+function updateCountries() {
+  const countries = getCountries(users);
+  const filterValue = filtersForm.country.value;
+  const addValue = addForm.country.value;
+
+  filtersForm.country.innerHTML = '<option value="">All</option>';
+  addForm.country.innerHTML = "";
+  addOptions(filtersForm.country, countries);
+  addOptions(addForm.country, countries);
+
+  filtersForm.country.value = filterValue;
+  if (addValue !== "") {
+    addForm.country.value = addValue;
+  }
+  setPhoneHint();
+}
 
 function showValue(value) {
   if (value === undefined || value === null || value === "") {
@@ -174,6 +223,8 @@ function updatePage() {
   renderCards(visible, teachersList, true);
   teachersEmpty.hidden = visible.length > 0;
 
+  statsCount.textContent = "Users: " + visible.length;
+
   if (sortField === "") {
     renderTable(visible);
   } else {
@@ -218,7 +269,7 @@ function setPhoneHint() {
   addForm.phone.placeholder = example ? "Example: " + example : "";
 }
 
-function addTeacher() {
+async function addTeacher() {
   const fullName = addForm.full_name.value.trim();
   const city = addForm.city.value.trim();
   const state = addForm.state.value.trim();
@@ -278,6 +329,13 @@ function addTeacher() {
   showError("");
   popupAdd.classList.remove("open");
   updatePage();
+
+  try {
+    await sendToServer(newUser);
+    statusText.textContent = "Teacher saved to json-server";
+  } catch (error) {
+    statusText.textContent = "json-server is not running, teacher was not saved there";
+  }
 }
 
 function onCardClick(event) {
@@ -348,10 +406,9 @@ addForm.addEventListener("submit", function (event) {
 });
 addForm.country.addEventListener("change", setPhoneHint);
 
-const countries = getCountries(users);
-addOptions(filtersForm.country, countries);
-addOptions(addForm.country, countries);
-addOptions(addForm.course, courses);
-setPhoneHint();
+nextBtn.addEventListener("click", function () {
+  loadUsers(NEXT_COUNT);
+});
 
-updatePage();
+addOptions(addForm.course, courses);
+loadUsers(FIRST_COUNT);

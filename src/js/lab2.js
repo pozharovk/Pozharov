@@ -3,15 +3,12 @@ const courses = [
   "Biology", "Chemistry", "Law", "Art", "Medicine", "Statistics",
 ];
 
-// "male" -> "Male"
 function capitalize(text) {
   if (typeof text !== "string" || text === "") {
     return text;
   }
   return text[0].toUpperCase() + text.slice(1);
 }
-
-// № 1
 
 function getRandomCourse() {
   let index = Math.floor(Math.random() * courses.length);
@@ -113,7 +110,6 @@ function getFormattedUsers() {
   return result;
 }
 
-// № 2
 
 const phoneFormats = {
   "Germany": /^\d{4}-\d{7}$/,
@@ -133,7 +129,6 @@ const phoneFormats = {
   "Netherlands": /^\(\d{3}\)-\d{3}-\d{4}$/,
 };
 
-// Приклади номерів для підказки у формі (підходять під формати вище)
 const phoneExamples = {
   "Germany": "0079-8291509",
   "Ireland": "021-123-4567",
@@ -180,9 +175,7 @@ function validateUser(user) {
   return true;
 }
 
-// № 3
 
-// Перевіряє вік: число (30) або діапазон ("18-31")
 function ageMatches(userAge, age) {
   if (typeof age === "string") {
     let parts = age.split("-");
@@ -204,7 +197,6 @@ function filterUsers(users, country, age, gender, favorite) {
   return result;
 }
 
-// № 4
 
 function sortUsers(users, field, direction) {
   let sorted = users.slice();
@@ -225,7 +217,6 @@ function sortUsers(users, field, direction) {
   return sorted;
 }
 
-// № 5
 
 function findUser(users, field, value) {
   for (let i = 0; i < users.length; i++) {
@@ -236,8 +227,6 @@ function findUser(users, field, value) {
   return null;
 }
 
-// № 5 (для сторінки)
-// findUser повертає одного, а на сторінці треба показати всіх, хто підходить
 function searchUsers(users, text) {
   text = text.trim().toLowerCase();
   if (text === "") {
@@ -255,7 +244,6 @@ function searchUsers(users, text) {
   return result;
 }
 
-// № 6
 
 function getPercent(users, field, sign, value) {
   if (users.length === 0) {

@@ -1,0 +1,42 @@
+{
+  "teachers": [
+    {
+      "id": "new-1792623240668",
+      "favorite": false,
+      "course": "Mathematics",
+      "bg_color": "#ff0000",
+      "note": "GHSREDTHTDRSFHDFTGHDRFT",
+      "gender": "Male",
+      "title": "Mr",
+      "full_name": "ФВЦФВЦФВ",
+      "city": "ВФЦВФСМВЧЫЯ",
+      "state": "МАЫУВКПАФЫ",
+      "country": "Australia",
+      "email": "ПЫКУВКУ@FA",
+      "b_date": "2022-01-01",
+      "age": 4,
+      "phone": "08-1234-5678",
+      "picture_large": null,
+      "picture_thumbnail": null
+    },
+    {
+      "id": "new-1792652975866",
+      "favorite": false,
+      "course": "Mathematics",
+      "bg_color": "#e60000",
+      "note": "DWAWDwdadaw",
+      "gender": "Male",
+      "title": "Mr",
+      "full_name": "DWawdaw",
+      "city": "Dwadawd",
+      "state": "Dawdwad",
+      "country": "Australia",
+      "email": "DWAdwa@",
+      "b_date": "2022-02-02",
+      "age": 4,
+      "phone": "08-1234-5467",
+      "picture_large": null,
+      "picture_thumbnail": null
+    }
+  ]
+}

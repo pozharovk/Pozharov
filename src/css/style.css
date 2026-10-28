@@ -655,3 +655,39 @@ h2 {
   font-size: 14px;
   color: #cf3f33;
 }
+
+/* Lab 4 */
+.status {
+  min-height: 24px;
+  margin-top: 16px;
+  font-size: 15px;
+  color: #999;
+}
+
+.next-btn {
+  width: 170px;
+  height: 46px;
+  margin-top: 10px;
+  border: 1px solid #f4574a;
+  background-color: #fff;
+  color: #f4574a;
+  font-family: inherit;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.next-btn:hover:not(:disabled) {
+  background-color: #f4574a;
+  color: #fff;
+}
+
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.stats-count {
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #555;
+}

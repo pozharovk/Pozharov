@@ -1,0 +1,11 @@
+{
+  "name": "teachfinder",
+  "version": "1.0.0",
+  "description": "Teachfinder - lab 4",
+  "scripts": {
+    "server": "json-server --watch db.json --port 3000"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}
